@@ -2,9 +2,7 @@ package com.example.comp3074project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,21 +10,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-
-    private UserRestaurantDbHelper dbHelper;
-    private List<Restaurant> userList;
-    private ArrayAdapter<Restaurant> adapter;
-    private ListView userListView;
-
+public class Search extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -35,27 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnGoToAbout = findViewById(R.id.btnAbout);
         btnGoToAbout.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, About.class);
+            Intent intent = new Intent(Search.this, About.class);
             startActivity(intent);
+            finish();
         });
 
-        Button btnAddRestaurant = findViewById(R.id.btnAdd);
-        btnAddRestaurant.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AddRestaurant.class);
+        Button btnMyList = findViewById(R.id.btnMyList);
+        btnMyList.setOnClickListener(v -> {
+            Intent intent = new Intent(Search.this, MainActivity.class);
             startActivity(intent);
+            finish();
         });
-
-        Button btnGoToSearch = findViewById(R.id.btnSearch);
-        btnGoToSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Search.class);
-            startActivity(intent);
-        });
-
-
     }
-
-
-
-
-
 }

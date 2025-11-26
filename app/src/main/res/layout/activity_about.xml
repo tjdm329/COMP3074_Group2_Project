@@ -67,6 +67,16 @@
         android:layout_gravity="center"
         />
 
+    <TextView
+        android:text="\nAbout:\nThis application is for the\nCOMP3074 Sem 5 Group Project."
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
     <Button
         android:backgroundTint="#67A5D9"
         android:id="@+id/btnExitAbout"
