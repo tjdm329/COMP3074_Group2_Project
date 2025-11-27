@@ -37,6 +37,8 @@ public class Restaurant {
         this.tags = tags;
         this.description = description;
     }
+
+
     // Getters
     public int getId() { return id; }
     public @NotNull String getName() { return name; }
@@ -59,7 +61,7 @@ public class Restaurant {
 
     @Override
     public String toString() {
-        return name;
+        return name + " - My Rating: " + rating;
     }
 
 }

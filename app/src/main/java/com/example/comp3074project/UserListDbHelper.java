@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserListDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "RestaurantsDatabase";
@@ -72,12 +75,33 @@ public class UserListDbHelper extends SQLiteOpenHelper {
         return sqLiteDatabase.insert(TABLE_NAME, null , cv)  != -1 ;
     }
 
-    //read - fetch
-    Cursor getUserList(){
-        //we need a readonly instance of db
+    //get users list of restaurants
+    public List<Restaurant> getUserList(){
+        List<Restaurant> userList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        //Query all rows
         String sql = "SELECT * FROM " + TABLE_NAME;
-        return sqLiteDatabase.rawQuery(sql, null);
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                String phone = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
+                float rating = cursor.getFloat(cursor.getColumnIndexOrThrow("rating"));
+                String tags = cursor.getString(cursor.getColumnIndexOrThrow("tags"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+
+                Restaurant r = new Restaurant(id, name, address, phone, rating, tags, description);
+                userList.add(r);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return userList;
     }
 
     //update
