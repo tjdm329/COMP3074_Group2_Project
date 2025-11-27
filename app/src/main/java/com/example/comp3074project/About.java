@@ -28,6 +28,7 @@ public class About extends AppCompatActivity {
         btnGoBack.setOnClickListener(v -> {
             Intent intent = new Intent(About.this, MainActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 }

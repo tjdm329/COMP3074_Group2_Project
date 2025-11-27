@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class UserRestaurantDbHelper extends SQLiteOpenHelper {
+public class UserListDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "RestaurantsDatabase";
     private static final int DATABASE_VERSION = 1;
@@ -22,7 +22,7 @@ public class UserRestaurantDbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DESC = "description";
 
 
-    public UserRestaurantDbHelper(
+    public UserListDbHelper(
             @Nullable Context context
     ) {
         //CURSOR factory is when you are using your own custom cursor factory

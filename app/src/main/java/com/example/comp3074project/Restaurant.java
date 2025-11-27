@@ -38,7 +38,7 @@ public class Restaurant {
         this.description = description;
     }
     // Getters
-    public @NotNull String getId() { return name; }
+    public int getId() { return id; }
     public @NotNull String getName() { return name; }
     public String getAddress() { return address; }
     public String getPhone() { return phone; }

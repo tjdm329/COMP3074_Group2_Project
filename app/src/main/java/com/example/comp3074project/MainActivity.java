@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UserRestaurantDbHelper dbHelper;
+    private UserListDbHelper dbHelper;
     private List<Restaurant> userList;
     private ArrayAdapter<Restaurant> adapter;
     private ListView userListView;
