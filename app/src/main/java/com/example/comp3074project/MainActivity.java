@@ -64,6 +64,23 @@ public class MainActivity extends AppCompatActivity {
         };
         listView.setAdapter(adapter);
 
+        // when user clicks on a row in their list, go to restaurant details page
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Restaurant r = userList.get(position);
+
+            Intent intent = new Intent(MainActivity.this, ViewRestaurant.class);
+
+            intent.putExtra("id", r.getId());
+            intent.putExtra("name", r.getName());
+            intent.putExtra("address", r.getAddress());
+            intent.putExtra("phone", r.getPhone());
+            intent.putExtra("rating", r.getRating());
+            intent.putExtra("tags", r.getTags());
+            intent.putExtra("description", r.getDescription());
+
+            startActivity(intent);
+        });
+
         // --- NAVIGATION BUTTONS
         // Button to go to the About screen
         Button btnGoToAbout = findViewById(R.id.btnAbout);
@@ -87,10 +104,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // refresh the users list when returning to the main screen
     @Override
     protected void onResume() {
         super.onResume();
-        // refresh the users list when returning to the main screen
+
         userList.clear();
         userList.addAll(dbHelper.getUserList());
         adapter.notifyDataSetChanged();
