@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COMP3074Project">
         <activity
+            android:name=".EditRestaurant"
+            android:exported="false" />
+        <activity
             android:name=".ViewRestaurant"
             android:exported="false" />
         <activity

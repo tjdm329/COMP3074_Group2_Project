@@ -47,8 +47,6 @@ public class ViewRestaurant extends AppCompatActivity {
             viewRate.setRating(rating);
         }
 
-
-
         // --- NAVIGATION BUTTONS
         // Button to delete from database
         Button btnDelete = findViewById(R.id.btnViewDelete);
@@ -57,14 +55,22 @@ public class ViewRestaurant extends AppCompatActivity {
         //Button to go to the update page
         Button btnUpdateDetails = findViewById(R.id.btnViewEdit);
         btnUpdateDetails.setOnClickListener(v -> {
-            Intent intent = new Intent(ViewRestaurant.this, AddRestaurant.class);
+            Intent intent = new Intent(ViewRestaurant.this, EditRestaurant.class);
+            intent.putExtra("id", extras.getInt("id"));
+            intent.putExtra("name", extras.getString("name"));
+            intent.putExtra("address",extras.getString("address"));
+            intent.putExtra("phone", extras.getString("phone"));
+            intent.putExtra("rating", extras.getFloat("rating", 0f));
+            intent.putExtra("tags", extras.getString("tags"));
+            intent.putExtra("description", extras.getString("description"));
             startActivity(intent);
             finish();
+
         });
 
         //Button to go back to main screen
-        Button btnGoToSearch = findViewById(R.id.btnViewGoBack);
-        btnGoToSearch.setOnClickListener(v -> {
+        Button btnGoBack = findViewById(R.id.btnViewGoBack);
+        btnGoBack.setOnClickListener(v -> {
             Intent intent = new Intent(ViewRestaurant.this, MainActivity.class);
             startActivity(intent);
             finish();

@@ -105,9 +105,9 @@ public class UserListDbHelper extends SQLiteOpenHelper {
     }
 
     //update
-    boolean updateUserList(Restaurant r) {
+    boolean updateUserRestaurant(Restaurant r) {
         //writeable instance
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, r.getName());
@@ -116,7 +116,6 @@ public class UserListDbHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_RATING, r.getRating());
         cv.put(COLUMN_TAGS, r.getTags());
         cv.put(COLUMN_DESC, r.getDescription());
-
 
         //the update method returns the number of rows affected
         return sqLiteDatabase.update(
