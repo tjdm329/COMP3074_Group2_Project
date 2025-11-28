@@ -128,8 +128,8 @@ public class UserListDbHelper extends SQLiteOpenHelper {
 
     //delete
     boolean deleteUserEntry(int id) {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        //the update method returns the number of rows affected
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        //returns the number of rows affected
         return sqLiteDatabase.delete(
                 TABLE_NAME,
                 COLUMN_ID + "=?",

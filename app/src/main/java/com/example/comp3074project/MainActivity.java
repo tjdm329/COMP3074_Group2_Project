@@ -22,8 +22,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private UserListDbHelper dbHelper;
-    private List<Restaurant> userList;
-    private ArrayAdapter<Restaurant> adapter;
+    public static List<Restaurant> userList;
+    public static ArrayAdapter<Restaurant> adapter;
     private ListView listView;
 
     @Override
@@ -62,14 +62,14 @@ public class MainActivity extends AppCompatActivity {
                 return view;
             }
         };
+        //if list is empty, display empty list message
+        listView.setEmptyView(findViewById(R.id.tvEmptyList));
         listView.setAdapter(adapter);
 
         // when user clicks on a row in their list, go to restaurant details page
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Restaurant r = userList.get(position);
-
             Intent intent = new Intent(MainActivity.this, ViewRestaurant.class);
-
             intent.putExtra("id", r.getId());
             intent.putExtra("name", r.getName());
             intent.putExtra("address", r.getAddress());
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("rating", r.getRating());
             intent.putExtra("tags", r.getTags());
             intent.putExtra("description", r.getDescription());
-
             startActivity(intent);
         });
 
@@ -87,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         btnGoToAbout.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, About.class);
             startActivity(intent);
+            finish();
         });
 
         //Button to go to the Add Restaurant screen
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         btnGoToSearch.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Search.class);
             startActivity(intent);
+            finish();
         });
     }
 
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        dbHelper = new UserListDbHelper(this);
         userList.clear();
         userList.addAll(dbHelper.getUserList());
         adapter.notifyDataSetChanged();
